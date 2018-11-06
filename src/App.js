@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Books from './Componentes/Books'
+import Shelf from './Componentes/Shelf'
 
 
 class BooksApp extends React.Component {
@@ -40,10 +40,25 @@ class BooksApp extends React.Component {
               <div className="list-books-title">
                 <h1>MyReads</h1>
               </div>
-              <Books
-                books={this.state.books}
-                onBook={this.mover}
-              />
+                
+                  <Shelf
+                        title="Currently Reading"
+                        cat="currentlyReading"
+                        books={this.state.books.filter(books => books.shelf === 'currentlyReading')}
+                        onBook={this.mover}
+                    />
+                    <Shelf
+                        title="Want to Read"
+                        cat="wantToRead"
+                        books={this.state.books.filter(books => books.shelf === 'wantToRead')}
+                        onBook={this.mover}
+                    />
+                    <Shelf
+                        title="Read"
+                        cat="read"
+                        books={this.state.books.filter(books => books.shelf === 'read')}
+                        onBook={this.mover}
+                    />
               
             </div>
         </div>

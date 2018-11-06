@@ -21,7 +21,7 @@ class Book extends Component {
                         <img alt="" src={this.props.book.imageLinks.thumbnail} style={{ width: 128, height: 193 }}/>
                     </div>
                     <div className="book-shelf-changer">
-                        <select onChange={this.handleChange} >
+                        <select onChange={this.handleChange} defaultValue={this.props.book.shelf}>
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading" >Currently Reading</option>
                             <option value="wantToRead" >Want to Read</option>
