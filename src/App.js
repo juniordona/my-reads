@@ -39,6 +39,9 @@ class BooksApp extends React.Component {
       <div className="app">
 
         <div className="list-books">
+          <div className="list-books-title">
+            <h1>MyReads</h1>
+          </div>
 
           <Shelf
             title="Currently Reading"
@@ -58,7 +61,10 @@ class BooksApp extends React.Component {
             books={this.state.books.filter(books => books.shelf === 'read')}
             onBook={this.mover}
           />
+        </div>
 
+        <div className="open-search">
+          <a style={{ cursor: 'pointer' }} onClick={() => this.props.history.push("/search")}>Add a book</a>
         </div>
       </div>
     )
