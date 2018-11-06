@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 class Book extends Component {
     static propTypes = {
-        book: PropTypes.object.isRequired,
-        booksShelfChange: PropTypes.func.isRequired
+        book: PropTypes.object,
+        booksChange: PropTypes.func
     }
 
-    handleShelfChange = (e) => {
+    handleChange = (e) => {
         let newValue = e.target.value;
-        this.props.booksShelfChange(this, newValue)
+        this.props.booksChange(this, newValue)
     }
 
     render() {
@@ -21,7 +21,7 @@ class Book extends Component {
                         <img alt="" src={this.props.book.imageLinks.thumbnail} style={{ width: 128, height: 193 }}/>
                     </div>
                     <div className="book-shelf-changer">
-                        <select onChange={this.handleShelfChange} defaultValue={this.props.book.shelf}>
+                        <select onChange={this.handleChange} >
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading" >Currently Reading</option>
                             <option value="wantToRead" >Want to Read</option>
