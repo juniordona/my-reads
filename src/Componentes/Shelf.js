@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Book from './Book'
 
 const Shelf = function (props) {
@@ -28,8 +27,4 @@ const Shelf = function (props) {
 
 }
 
-Shelf.propTypes = {
-    books: PropTypes.array,
-    title: PropTypes.string
-}
 export default Shelf
