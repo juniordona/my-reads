@@ -6,11 +6,11 @@ class Books extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
-        onBookShelfChange: PropTypes.func.isRequired
+        onBook: PropTypes.func.isRequired
     }
 
-    handleBookShelfChange = (book, shelf) => {
-        this.props.onBookShelfChange(book, shelf);
+    handleBook = (book, shelf) => {
+        this.props.onBook(book, shelf);
     }
 
     render() {
@@ -21,19 +21,19 @@ class Books extends Component {
                         title="Currently Reading"
                         cat="currentlyReading"
                         books={this.props.books.filter(bs => bs.shelf === 'currentlyReading')}
-                        onBookShelfChange={this.handleBookShelfChange}
+                        onBook={this.handleBook}
                     />
                     <Shelf
                         title="Want to Read"
                         cat="wantToRead"
                         books={this.props.books.filter(bs => bs.shelf === 'wantToRead')}
-                        onBookShelfChange={this.handleBookShelfChange}
+                        onBook={this.handleBook}
                     />
                     <Shelf
                         title="Read"
                         cat="read"
                         books={this.props.books.filter(bs => bs.shelf === 'read')}
-                        onBookShelfChange={this.handleBookShelfChange}
+                        onBook={this.handleBook}
                     />
                 </div>
             </div>

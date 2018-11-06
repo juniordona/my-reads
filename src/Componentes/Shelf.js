@@ -4,8 +4,8 @@ import Book from './Book'
 
 const Shelf = function (props) {
 
-    let handleBookShelfChange = (book, shelf) => {
-        props.onBookShelfChange(book, shelf);
+    let handleBook = (book, shelf) => {
+        props.onBook(book, shelf);
     }
 
     return (
@@ -17,7 +17,7 @@ const Shelf = function (props) {
                         <li key={book.id}>
                             <Book
                                 book={book}
-                                booksShelfChange={handleBookShelfChange}
+                                booksShelfChange={handleBook}
                             />
                         </li>
                     ))}
