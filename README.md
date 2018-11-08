@@ -1,3 +1,11 @@
+Este projeto tem como objetivo a avaliação da primeira parte do curso "Programa Nanodegree Desenvolvedor React" da Udacity.
+
+MyReads é uma aplicação de registro de livros que permite selecionar e categorizar livros que você já leu, está lendo e quer ler.
+
+Para abrir a aplicação basta executar no terminal na pasta do projeto `npm install` e depois `npm-start`.
+
+Abaixo segue o READM do [Create React App](https://github.com/facebook/create-react-app) com instruções mais detalhadas do setup inicial do projeto.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
