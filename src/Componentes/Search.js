@@ -8,8 +8,22 @@ class Search extends Component {
         super(props);
 
         this.state = {
-            books: []
+            books: [],
+            myBooks: []
         }
+    }
+
+    componentDidMount = () => {
+        this.fetchMyBooks();
+    }
+
+    fetchMyBooks = () => {
+        return BooksAPI.getAll().then((books) => {
+            this.setState({
+                myBooks: books
+            });
+            return books;
+        })
     }
 
     search = (e) => {
@@ -26,27 +40,29 @@ class Search extends Component {
                 if (!res.error) {
                     books = res;
                 }
-                this.setState({
-                    books: books
-                })
+                this.mapSeachedBooksToMyBooks(books);
+
             })
             .catch(error => console.log(error))
     }
 
-    mover = (book, newValue) => {
-        console.log(book.props.book.shelf);
-        console.log(book.props.book);
-        console.log(newValue);
+    mapSeachedBooksToMyBooks = (searchedBooks) => {
+        searchedBooks.forEach(book => {
+            let myBook = this.state.myBooks.find((b) => b.id === book.id);
+            if (myBook) {
+                book.shelf = myBook.shelf;
+            }
+        });
+        this.setState({
+            books: searchedBooks
+        })
+    }
 
+    mover = (book, newValue) => {
         book.props.book.shelf = newValue;
 
-        this.setState((state) => ({
-            books: state.books.filter((b) => b.id !== book.props.book.id).concat([book.props.book])
-        }))
-
-        BooksAPI.update(book.props.book, newValue);
-
-
+        BooksAPI.update(book.props.book, newValue)
+            .then(this.fetchMyBooks().then(this.mapSeachedBooksToMyBooks(this.state.books)));
     }
 
     render() {
@@ -69,7 +85,7 @@ class Search extends Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {this.state.books.map((book) => (
-                            <li key={book.id}>
+                            <li key={book.id + book.shelf}>
                                 <Book
                                     book={book}
                                     booksChange={this.mover}
